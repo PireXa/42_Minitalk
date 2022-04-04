@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 15:09:06 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/04 15:57:42 by fde-albe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdio.h>
 #include<signal.h>
 #include<unistd.h>
 #include<stdlib.h>
 #include "libft.h"
 
-int i = 0;
+int	g_i = 0;
 
-int decoder(char *str)
+int	decoder(char *str)
 {
-	int a;
-	int res;
+	int	a;
+	int	res;
 
 	a = 7;
 	res = 0;
@@ -19,38 +31,40 @@ int decoder(char *str)
 			res += 1 * ft_recursive_power(2, (7 - a));
 		a--;
 	}
-//	printf("%c\n", res);
 	return (res);
 }
 
-void receive_str(int sinal)
+void	receive_str(int sinal)
 {
 	char	*str;
-	int cena;
+	int		cena;
 
+	str = malloc(8 * sizeof(int) + 1);
 	if (sinal == 30)
 	{
-		str[i] = '0';
-		i++;
+		str[g_i] = '0';
+		g_i++;
 	}
 	else if (sinal == 31)
 	{
-		str[i] = '1';
-		i++;
+		str[g_i] = '1';
+		g_i++;
 	}
-	if (i == 8)
+	if (g_i == 8)
 	{
-		str[i] = '\0';
+		str[g_i] = '\0';
 		cena = decoder(str);
 		printf("%c\n", cena);
-		i = 0;
+		g_i = 0;
 	}
+	free (str);
 }
 
-int main()
+int	main(void)
 {
 	printf("\nServer PID: %d\n", getpid());
 	signal(SIGUSR1, receive_str);
 	signal(SIGUSR2, receive_str);
-	while(1);
+	while (1)
+		;
 }

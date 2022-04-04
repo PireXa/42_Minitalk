@@ -6,7 +6,7 @@
 /*   By: rdas-nev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:46:29 by rdas-nev          #+#    #+#             */
-/*   Updated: 2022/03/02 14:52:16 by rdas-nev         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:08:49 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int     ft_recursive_power(int nb, int power);
+int			ft_recursive_power(int nb, int power);
 
 long long	ft_atoi(const char *str);
 

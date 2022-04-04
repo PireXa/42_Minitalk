@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 15:07:53 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/04 15:23:21 by fde-albe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdio.h>
 #include<signal.h>
 #include<unistd.h>
@@ -6,28 +18,28 @@
 
 int	*binvert(int c)
 {
-	int *arrayBin;
-	int i = 7;
-	arrayBin = malloc(8*sizeof(int));
+	int	*arraybin;
+	int	i;
 
-	while((c) != 0)
+	i = 7;
+	arraybin = malloc(8 * sizeof(int));
+	while ((c) != 0)
 	{
-		arrayBin[i] = c % 2;
+		arraybin[i] = c % 2;
 		c /= 2;
 		i--;
 	}
-	while(i >= 0)
-		arrayBin[i--] = 0;
-
-//	for (i=0; i<8; i++)
-//		printf("%d", arrayBin[i]);
-	return(arrayBin);
+	while (i >= 0)
+		arraybin[i--] = 0;
+	return (arraybin);
 }
 
-void	SigSend(int *array,	int pid)
+void	sigsend(int *array,	int pid)
 {
-	int	i = 0;
-	while(i<8)
+	int	i;
+
+	i = 0;
+	while (i < 8)
 	{
 		if (array[i] == 0)
 		{
@@ -44,15 +56,20 @@ void	SigSend(int *array,	int pid)
 	free(array);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int pid = ft_atoi(av[1]);
-	int	i=0;
-	while(av[2][i] != '\0')
+	int	pid;
+	int	i;
+	int	input;
+
+	pid = ft_atoi(av[1]);
+	i = 0;
+	if (ac <= 2)
+		return (0);
+	while (av[2][i] != '\0')
 	{
-		int input = ft_isalnum((int)(av[2][i]));
-		SigSend(binvert(input), pid);
-//		printf(" ");
+		input = ft_isalnum((int)(av[2][i]));
+		sigsend(binvert(input), pid);
 		i++;
 	}
 }
