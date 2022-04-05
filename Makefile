@@ -6,38 +6,35 @@
 #    By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 14:17:46 by fde-albe          #+#    #+#              #
-#    Updated: 2022/04/04 15:29:28 by fde-albe         ###   ########.fr        #
+#    Updated: 2022/04/05 16:10:39 by fde-albe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SERVER_SRCS		=	server.c ft_recursive_power.c \
+SERVER_SRCS		=	server.c ft_recursive_power.c libftprintf.a \
 
-CLIENT_SRCS		=	client.c ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isdigit.c \
+CLIENT_SRCS		=	client.c ft_atoi.c ft_isprint.c libftprintf.a \
 
-SERVER_OBJS		= $(SERVER_SRCS:.c=.o)
-
-CLIENT_OBJS		= $(CLIENT_SRCS:.c=.o)
-
-CC			= gcc
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror -I.
+CFLAGS		= -Wall -Wextra -Werror
 
-SERVER		= server.out
+SERVER		= server
 
-CLIENT		= client.out
+CLIENT		= client
 
 all:		$(SERVER) $(CLIENT)
 
-$(SERVER):	$(SERVER_OBJS)
-			gcc -o $(SERVER) $(SERVER_OBJS)
+$(SERVER):	$(SERVER_SRCS)
+			@$(CC) -o $(SERVER) $(SERVER_SRCS)
+			@printf "\n\e[3;1;32m     ⛩   Successfully Built Server 🍣\e[0m\n\n"
 
-$(CLIENT):	$(CLIENT_OBJS)
-			gcc -o $(CLIENT) $(CLIENT_OBJS)
-
+$(CLIENT):	$(CLIENT_SRCS)
+			@$(CC) -o $(CLIENT) $(CLIENT_SRCS)
+			@printf "\n\e[3;1;32m     ⛩   Successfully Built Client 🥢\e[0m\n\n"
 clean:
-			$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
+			@$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
 
 fclean:		clean
-			$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
+			@$(RM) $(SERVER) $(CLIENT)
+			@printf "\n\e[3;1;31m     ⚰️   Files Removed 📄 ➡️  🗑\e[0m\n\n"
 
-re:			fclean $(SERVER) $(CLIENT) clean
+re:			fclean $(SERVER) $(CLIENT)
