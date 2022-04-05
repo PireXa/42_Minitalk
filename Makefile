@@ -22,19 +22,24 @@ SERVER		= server
 CLIENT		= client
 
 all:		$(SERVER) $(CLIENT)
+			@printf "\e[2;1;92m  🍤 🦓 PireXa Makefiles 🦓 🍤 \e[0m\n"
 
 $(SERVER):	$(SERVER_SRCS)
 			@$(CC) -o $(SERVER) $(SERVER_SRCS)
-			@printf "\n\e[3;1;32m     ⛩   Successfully Built Server 🍣\e[0m\n\n"
+			@printf "\e[105m                                              \e[0m\n"
+			@printf "\e[94m#######\e[0m\e[3;1;32m⛩   Successfully Built Server 🍣\e[0m\e[94m#######\e[0m\n"
 
 $(CLIENT):	$(CLIENT_SRCS)
 			@$(CC) -o $(CLIENT) $(CLIENT_SRCS)
-			@printf "\n\e[3;1;32m     ⛩   Successfully Built Client 🥢\e[0m\n\n"
+			@printf "\e[105m                                              \e[0m\n"
+			@printf "\e[94m#######\e[0m\e[0m\e[3;1;32m⛩   Successfully Built Client 🥢\e[0m\e[94m#######\e[0m\n"
+			@printf "\e[105m                                              \e[0m\n"
+
 clean:
 			@$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
 
 fclean:		clean
 			@$(RM) $(SERVER) $(CLIENT)
-			@printf "\n\e[3;1;31m     ⚰️   Files Removed 📄 ➡️  🗑\e[0m\n\n"
+			@printf "\e[94m###########\e[0m\e[3;1;31m🥒 Files Removed 📄 ➡️  🗑 \e[0m\e[94m##########\e[0m\n"
 
 re:			fclean $(SERVER) $(CLIENT)

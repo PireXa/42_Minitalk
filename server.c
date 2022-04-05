@@ -59,7 +59,11 @@ void	receive_str(int sinal)
 
 int	main(void)
 {
-	ft_printf("\n\e[3;1;34mServer PID: %d\e[0m\n", getpid());
+	ft_printf("\e[1;34;47m/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/\e[0m\n");
+	ft_printf("\e[1;34;47m/#/#/#/#/\e[0m\e[3;1;34m Server PID: %d \e[0m\e[1;34;47m/#/#/#/#/#\e[0m\n", getpid());
+	ft_printf("\e[1;34;47m/#/#/#/#/#\e[0m\e[3;1;34m by PireXa 🦓🌶  \e[0m\e[1;34;47m/#/#/#/#/#/\e[0m\n");
+	ft_printf("\e[1;34;47m/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/\e[0m\n");
+	ft_printf("\e[1;92m Running... ♿️🔞\e[0m\n");
 	signal(SIGUSR1, receive_str);
 	signal(SIGUSR2, receive_str);
 	while (1)
